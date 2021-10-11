@@ -8,7 +8,8 @@ def _get_access_token():
 
 
 if __name__ == '__main__':
-    client = Client("demo-api.feature-store.h2o.ai", secure=False, root_certificates=None)
+    root_certificates = "./roots.pem"  # from https://github.com/grpc/grpc/blob/master/etc/roots.pem
+    client = Client("demo-api.feature-store.h2o.ai", secure=True, root_certificates=root_certificates)
     client.auth.set_obtain_access_token_method(_get_access_token)
     print(client.projects.list())
 
